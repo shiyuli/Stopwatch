@@ -1,5 +1,9 @@
-#ifndef STOPWATCH_H_
-#define STOPWATCH_H_
+#ifndef STOPWATCH_HPP_
+#define STOPWATCH_HPP_
+
+#ifndef _MSC_VER
+#define STOPWATCH_GCC
+#endif
 
 #include <chrono>
 #include <variant>
@@ -32,19 +36,24 @@ private:
     {
         started,
         stopped
-    } status_;
+    }
+#ifdef STOPWATCH_GCC
+    status_;
+#else
+    status__;
 
-    // status get_status()
-    // {
-    //     return status__;
-    // }
+    status get_status()
+    {
+        return status__;
+    }
 
-    // void put_status(status status)
-    // {
-    //     status__ = status;
-    // }
+    void put_status(status status)
+    {
+        status__ = status;
+    }
 
-    // __declspec(property(get = get_status, put = put_status)) status status_;
+    __declspec(property(get = get_status, put = put_status)) status status_;
+#endif
 
 private:
     time_point_t started_time_;
@@ -87,15 +96,15 @@ std::ostream& Stopwatch::time_stream(std::ostream& ostream, time_point_t time)
 {
     std::time_t temp_time = std::chrono::system_clock::to_time_t(time);
 
-#ifdef _MSC_VER
+#ifdef STOPWATCH_GCC
+    ostream << ctime(&temp_time);
+#else
     char* buffer = new char[26];
     ctime_s(buffer, 26, &temp_time);
     ostream << buffer;
 
     delete[] buffer;
     buffer = nullptr;
-#else
-    ostream << ctime(&temp_time);
 #endif
 
     return ostream;
@@ -114,4 +123,4 @@ time_point_t Stopwatch::get_time()
 }
 
 #else
-#endif //STOPWATCH_H_
+#endif //STOPWATCH_HPP_
