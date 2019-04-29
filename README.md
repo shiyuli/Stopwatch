@@ -9,7 +9,7 @@ Stopwatch is a simple, fast, cross-platform and header-only stopwatch for C++.
 ## Test
 
 ```shell
-sudo sh ./build.sh
+sudo sh ./test.sh
 ./test
 ```
 
