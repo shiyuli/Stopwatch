@@ -13,3 +13,40 @@ sudo sh ./build.sh
 ./test
 ```
 
+## Usage
+
+- include header
+
+  ```cpp
+  #include "stopwatch.hpp"
+  ```
+
+- instantiate a class in stack
+
+  ```cpp
+  Stopwatch stopwatch;
+  ```
+
+- start stopwatch
+
+  ```cpp
+  stopwatch.start();
+  ```
+
+- split and get duration
+
+  ```cpp
+  std::cout << "duration: " << stopwatch.split().count() << " seconds" << std::endl;
+  ```
+
+- get current time
+
+  ```cpp
+  std::cout << "current_time: " << Stopwatch::current_time << std::endl;
+  ```
+
+- stop stopwatch
+
+  ```cpp
+  stopwatch.stop();
+  ```
