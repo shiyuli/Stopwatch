@@ -1,13 +1,11 @@
 #include "stopwatch.hpp"
 
-#include <cstdlib>
 #include <iostream>
 
 int main()
 {
-    Stopwatch* stopwatch = new Stopwatch();
-    stopwatch->start();
-    std::cout << "duration: " << stopwatch->split().count() << std::endl;
+    Stopwatch stopwatch;
+    stopwatch.start();
 
-    system("pause");
+    std::cout << "duration: " << stopwatch.split().count() << std::endl;
 }
