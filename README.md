@@ -36,15 +36,28 @@ sudo sh ./build.sh
 - split and get duration
 
   ```cpp
-  std::cout << "duration: " << stopwatch.split().count() << " seconds" << std::endl;
+  std::cout << "duration: " << stopwatch.split() << " seconds" << std::endl;
+  ```
+
+  or
+
+  ```cpp
+  duration_t duration = stopwatch.split_raw();
+  std::cout << "duration: " << duration.count() << " seconds" << std::endl;
   ```
 
 - get current time
 
   ```cpp
-  std::cout << "current_time: " << Stopwatch::current_time << std::endl;
+  std::cout << "current_time: " << Stopwatch::now << std::endl;
   ```
 
+- get splits
+
+  ```cpp
+  std::cout << stopwatch.splits() << std::endl;
+  ```
+  
 - stop stopwatch
 
   ```cpp
